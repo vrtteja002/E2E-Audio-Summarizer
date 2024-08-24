@@ -30,9 +30,52 @@ This Streamlit application provides an end-to-end solution for audio summarizati
 
 The architecture of the End-to-End Audio Summarizer is illustrated in the diagram below:
 
-[Architecture Diagram](architecture.png)
+```mermaid
+graph TD
+    A[User Interface] -->|Upload Audio| B[Audio Input]
+    B --> C[Voice Activity Detection]
+    C --> D[Speech-to-Text Transcription]
+    D --> E[LLM-based Summarization]
+    E --> F[Text-to-Speech Synthesis]
+    F --> G[Audio Output]
 
-This diagram shows the flow of data through the application, from audio input to summarized audio output, including the key components and models used in the process.
+    H[Configuration] -->|VAD Threshold| C
+    H -->|Pitch, Speed, Voice Gender| F
+
+    subgraph Streamlit App
+    A
+    H
+    end
+
+    subgraph Processing Pipeline
+    B
+    C
+    D
+    E
+    F
+    G
+    end
+
+    subgraph Models
+    I[Whisper Model]
+    J[BART-large-CNN]
+    K[pyttsx3 Engine]
+    end
+
+    D -.->|Uses| I
+    E -.->|Uses| J
+    F -.->|Uses| K
+```
+
+This diagram illustrates the flow of data through the application:
+1. The user uploads an audio file through the Streamlit interface.
+2. The audio undergoes Voice Activity Detection to isolate speech segments.
+3. The Whisper model transcribes the speech to text.
+4. The BART-large-CNN model summarizes the transcription.
+5. The pyttsx3 engine converts the summary back to speech.
+6. The final audio summary is presented to the user.
+
+The diagram also shows how user configurations (VAD threshold, TTS settings) influence different stages of the process.
 
 ## Requirements
 
