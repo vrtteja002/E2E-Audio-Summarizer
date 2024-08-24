@@ -1,4 +1,4 @@
-# Voice-to-Text, LLM Summarization, and Text-to-Speech
+# Voice-to-Text, LLM Summarization, and Text-to-Speech(End to End Audio Summaraizer)
 
 This Streamlit application combines voice-to-text transcription, LLM-based summarization, and text-to-speech synthesis to process audio files and generate concise summaries.
 
