@@ -162,7 +162,3 @@ We welcome contributions to improve the End-to-End Audio Summarizer! Please foll
 4. Push the branch and open a pull request with a detailed description of your changes
 
 Before submitting a pull request, please ensure your code adheres to the project's coding standards and includes appropriate tests.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
