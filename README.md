@@ -7,6 +7,7 @@ This Streamlit application provides an end-to-end solution for audio summarizati
 ## Table of Contents
 
 - [Features](#features)
+- [Architecture](#architecture)
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -14,6 +15,7 @@ This Streamlit application provides an end-to-end solution for audio summarizati
 - [How It Works](#how-it-works)
 - [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
+- [License](#license)
 
 ## Features
 
@@ -23,6 +25,14 @@ This Streamlit application provides an end-to-end solution for audio summarizati
 - **Text Summarization**: Employs the BART-large-CNN model for concise summarization
 - **Text-to-Speech**: Converts summaries back to audio with customizable voice settings
 - **Interactive UI**: User-friendly Streamlit interface for easy operation
+
+## Architecture
+
+The architecture of the End-to-End Audio Summarizer is illustrated in the diagram below:
+
+[Architecture Diagram](architecture.png)
+
+This diagram shows the flow of data through the application, from audio input to summarized audio output, including the key components and models used in the process.
 
 ## Requirements
 
@@ -34,42 +44,6 @@ This Streamlit application provides an end-to-end solution for audio summarizati
 - SciPy
 - transformers
 - pyttsx3
-
-## Architecture
-graph TD
-    A[User Interface] -->|Upload Audio| B[Audio Input]
-    B --> C[Voice Activity Detection]
-    C --> D[Speech-to-Text Transcription]
-    D --> E[LLM-based Summarization]
-    E --> F[Text-to-Speech Synthesis]
-    F --> G[Audio Output]
-
-    H[Configuration] -->|VAD Threshold| C
-    H -->|Pitch, Speed, Voice Gender| F
-
-    subgraph Streamlit App
-    A
-    H
-    end
-
-    subgraph Processing Pipeline
-    B
-    C
-    D
-    E
-    F
-    G
-    end
-
-    subgraph Models
-    I[Whisper Model]
-    J[BART-large-CNN]
-    K[pyttsx3 Engine]
-    end
-
-    D -.->|Uses| I
-    E -.->|Uses| J
-    F -.->|Uses| K
 
 ## Installation
 
@@ -100,14 +74,14 @@ graph TD
 2. Access the application in your web browser (typically at `http://localhost:8501`).
 
 3. Use the interface to:
-   - Upload an audio file
-   - Adjust the VAD threshold
+   - Upload an audio file (WAV, MP3, or OGG format)
+   - Adjust the VAD threshold using the slider
    - Customize TTS settings (pitch, speed, voice gender)
-   - Process the audio by clicking "Transcribe, Summarize, and Speak"
+   - Click "Transcribe, Summarize, and Speak" to process the audio
 
 4. Review the results:
    - Read the full transcription
-   - View the generated summary
+   - View the generated summary (2-3 sentences)
    - Listen to the synthesized summary audio
 
 ## Configuration
@@ -119,21 +93,21 @@ graph TD
 
 ## How It Works
 
-1. **Voice Activity Detection**: Identifies speech segments in the audio
-2. **Transcription**: Converts speech to text using the Whisper model
-3. **Summarization**: Condenses the transcription using BART-large-CNN
-4. **Text-to-Speech**: Generates an audio version of the summary
-
+1. **Voice Activity Detection**: Identifies speech segments in the audio using energy-based thresholding
+2. **Transcription**: Converts speech to text using the Whisper model (base version)
+3. **Summarization**: Condenses the transcription using BART-large-CNN model
+4. **Text-to-Speech**: Generates an audio version of the summary using pyttsx3
 
 ## Troubleshooting
 
-- If you encounter OMP or KMP errors, try setting these environment variables:
+- If you encounter OMP or KMP errors, set these environment variables:
   ```bash
   export KMP_DUPLICATE_LIB_OK=TRUE
   export OMP_NUM_THREADS=1
   ```
 - Ensure all dependencies are correctly installed and your Python version is compatible
 - For audio playback issues, check your system's audio settings and browser compatibility
+- If the summarization seems off, try adjusting the VAD threshold or check the audio quality
 
 ## Contributing
 
@@ -143,3 +117,9 @@ We welcome contributions to improve the End-to-End Audio Summarizer! Please foll
 2. Create a new branch for your feature or bug fix
 3. Commit your changes with clear, descriptive messages
 4. Push the branch and open a pull request with a detailed description of your changes
+
+Before submitting a pull request, please ensure your code adheres to the project's coding standards and includes appropriate tests.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
