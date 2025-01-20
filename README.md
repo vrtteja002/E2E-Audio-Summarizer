@@ -92,8 +92,8 @@ The diagram also shows how user configurations (VAD threshold, TTS settings) inf
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/vrtteja002/AI_Lizmotors_Intern_Task.git
-   cd AI_Lizmotors_Intern_Task
+   git clone https://github.com/vrtteja002/E2E-Audio-Summarizer.git 
+   cd E2E-Audio-Summarizer
    ```
 
 2. Set up a virtual environment (recommended):
