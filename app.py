@@ -71,11 +71,11 @@ def text_to_speech(text, pitch=0, speed=150, voice_gender='male'):
     return fp
 
 def main():
-    st.title("Voice-to-Text, LLM Summarization, and Text-to-Speech")
+    st.title("END 2 END AUDIO SUMMARIZER")
 
     uploaded_file = st.file_uploader("Choose an audio file", type=["wav", "mp3", "ogg"])
 
-    vad_threshold = st.slider("VAD Threshold", 0.0, 1.0, 0.5, 0.01)
+    vad_threshold = st.slider("VAD Threshold", 0.0, 1.0, 0.0, 0.01)
     pitch = st.slider("Pitch", -50, 50, 0)
     speed = st.slider("Speed", 50, 300, 150)
     voice_gender = st.selectbox("Voice Gender", ["male", "female"])
