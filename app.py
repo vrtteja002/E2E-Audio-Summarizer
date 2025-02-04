@@ -28,7 +28,7 @@ def preprocess_audio(audio, sr, target_sr=16000):
         audio = signal.resample(audio, int(len(audio) * target_sr / sr))
     return audio, target_sr
 
-def voice_to_text(audio, sr, vad_threshold=0.5):
+def voice_to_text(audio, sr, vad_threshold=0.0):
     audio, sample_rate = preprocess_audio(audio, sr)
     voice_activity = voice_activity_detection(audio, sample_rate, threshold=vad_threshold)
     audio_vad = audio * voice_activity
