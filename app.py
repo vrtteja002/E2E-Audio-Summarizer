@@ -11,7 +11,7 @@ import pyttsx3
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 os.environ['OMP_NUM_THREADS'] = '1'
 
-def voice_activity_detection(audio, sample_rate, threshold=0.5, frame_length=1024, hop_length=512):
+def voice_activity_detection(audio, sample_rate, threshold=0.0, frame_length=1024, hop_length=512):
     energy = np.array([
         sum(abs(audio[i:i+frame_length]**2))
         for i in range(0, len(audio), hop_length)
