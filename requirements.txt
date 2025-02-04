@@ -6,4 +6,4 @@ scipy
 transformers
 pyttsx3
 torch
-eSpeak-ng
+espeak-ng
